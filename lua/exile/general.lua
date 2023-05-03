@@ -10,9 +10,6 @@ vim.o.ignorecase = true
 -- Enable mouse click
 vim.o.mouse = 'a'
 
--- Middle-click paste with visual selection
-vim.o.mouse = 'v'
-
 -- Highlight search results
 vim.o.hlsearch = true
 
@@ -46,9 +43,6 @@ vim.o.colorcolumn = '80'
 -- Use system clipboard
 vim.o.clipboard = 'unnamedplus'
 
--- Highlight the current cursor line
-vim.wo.cursorline = true
-
 -- Speed up scrolling in Vim
 vim.o.ttyfast = true
 
@@ -73,3 +67,6 @@ vim.cmd('filetype plugin indent on')
 
 -- Enable syntax highlighting
 vim.cmd('syntax on')
+
+-- Enable termguicolors
+vim.opt.termguicolors = true

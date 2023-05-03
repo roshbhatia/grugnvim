@@ -1,3 +1,4 @@
-require('exile.general')
 require('exile.plugins')
-require('exile.ui')
+require('exile.general')
+require('exile.nerdtree')
+require('exile.feline')

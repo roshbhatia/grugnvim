@@ -9,9 +9,3 @@ require('packer').startup(function(use)
   use 'liuchengxu/vim-which-key'
   use 'feline-nvim/feline.nvim'
 end)
-
--- NERDTree settings
-vim.cmd([[
-  autocmd VimEnter * NERDTree | wincmd p
-  autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-]])
