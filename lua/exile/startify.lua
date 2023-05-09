@@ -1,4 +1,3 @@
--- startify.lua
 vim.g.startify_custom_header = {
     '███████╗██╗  ██╗██╗██╗     ███████╗',
     '██╔════╝╚██╗██╔╝██║██║     ██╔════╝',
@@ -14,7 +13,8 @@ function CommandToStartifyTable(command)
         local files =
             vim.tbl_map(
                 function(v)
-                    return { line = v, path = v }
+                    local path = string.gsub(v, os.getenv("HOME"), "~")
+                    return { line = "  " .. path, path = v }
                 end,
                 cmd_output
             )
@@ -22,17 +22,25 @@ function CommandToStartifyTable(command)
     end
 end
 
--- define startify lists
 vim.g.startify_lists = {
-    { type = CommandToStartifyTable('find ~/github/*/* -maxdepth 0 -type d'), header = { "         Repositoreis" } }
-
+    { type = CommandToStartifyTable('find ~/github/*/* -maxdepth 0 -type d'), header = { "         Repositories" } }
 }
-
--- set startify options
 vim.g.startify_session_autoload = 1
 
--- Open NERDTree when leaving Startify buffer
-vim.cmd([[autocmd BufLeave * if (winnr("$") == 1 && &filetype == "startify") | NERDTree | endif]])
--- Quit Startify when a file is opened from NERDTree
-vim.cmd(
-    [[autocmd BufEnter * if (winnr("$") > 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif]])
+vim.cmd([[
+    augroup startify_close
+        autocmd!
+        autocmd FileType startify nnoremap <buffer> <CR> :call StartifyOpenOrCloseNERDTree()<CR>
+    augroup END
+]])
+
+function StartifyOpenOrCloseNERDTree()
+    local is_open = vim.api.nvim_eval("exists('t:NERDTreeBufName')")
+    if is_open == 0 then
+        vim.api.nvim_command("NERDTree")
+        vim.api.nvim_command("vertical resize 35")
+        vim.cmd("startinsert")
+    else
+        vim.api.nvim_command("NERDTreeClose")
+    end
+end
