@@ -70,3 +70,6 @@ vim.cmd('syntax on')
 
 -- Enable termguicolors
 vim.opt.termguicolors = true
+
+-- Set colorscheme
+vim.cmd.colorscheme 'melange'

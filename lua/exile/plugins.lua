@@ -8,4 +8,6 @@ require('packer').startup(function(use)
   use 'jackguo380/vim-lsp-cxx-highlight'
   use 'liuchengxu/vim-which-key'
   use 'feline-nvim/feline.nvim'
+  use "savq/melange-nvim"
+  use 'mhinz/vim-startify'
 end)
