@@ -1,10 +1,8 @@
 -- Load Exile plugins
-require('exile.plugins')
 require('exile.general')
+require('exile.plugins')
 require('exile.feline')
-
--- Import your Startify configuration
-require('exile.startify')
+require('exile.startify-nerdtree')
 
 -- Define a custom command to open Startify
 vim.cmd([[
@@ -14,15 +12,21 @@ vim.cmd([[
   endfunction
 ]])
 
--- Autocommands for buffer behavior
-vim.cmd([[
-  autocmd WinEnter * if &filetype !=# 'nerdtree' | startinsert | endif
-  autocmd BufEnter * if &filetype ==# 'nerdtree' | stopinsert | endif
-  autocmd BufEnter * if &filetype == 'startify' | stopinsert | endif
-]])
-
 -- Keybinding to open Startify
 vim.api.nvim_set_keymap('n', '<F3>', ':StartifyStart<CR>', { noremap = true, silent = true })
+
+-- Define a custom command to open NERDTree on the left
+vim.cmd([[
+  command! NERDTreeOpen :NERDTreeToggle<CR>
+]])
+
+-- Map <F4> to open NERDTree
+vim.api.nvim_set_keymap('n', '<F4>', ':NERDTreeOpen<CR>', { noremap = true, silent = true })
+
+-- Autocommands for buffer behavior
+vim.cmd([[
+  autocmd BufEnter,WinEnter * if &filetype ==# 'nerdtree' | startinsert | else | stopinsert | endif
+]])
 
 -- Default settings
 vim.cmd('autocmd VimEnter * StartifyStart')

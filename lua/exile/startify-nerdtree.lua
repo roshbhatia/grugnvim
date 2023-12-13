@@ -1,4 +1,18 @@
--- startify.lua
+-- A function that takes the header lines of Startify and centers them based on the current terminal width.
+function center_startify(header_lines)
+    local padding = string.rep(' ', math.floor((vim.o.columns - 38) / 2))
+    local header = {}
+    for i, line in ipairs(header_lines) do
+        table.insert(header, padding .. line)
+    end
+    return header
+end
+
+-- Define a function to open NERDTree with the selected repository
+function startify_open_nerdtree()
+    local selected = vim.fn.input("Choose a repo: ")
+    vim.cmd("NERDTree " .. selected)
+end
 
 -- A function that takes a command and returns a function that can be used as the type for a Startify list.
 -- The returned function will run the given command and return a table of file paths to display in Startify.
@@ -13,21 +27,6 @@ function command_to_startify_table(command)
     end
 end
 
--- A function that takes the header lines of Startify and centers them based on the current terminal width.
-function center_startify(header_lines)
-    local padding = string.rep(' ', math.floor((vim.o.columns - 38) / 2))
-    local header = {}
-    for i, line in ipairs(header_lines) do
-        table.insert(header, padding .. line)
-    end
-    return header
-end
-
--- A function that adds an emoji to the beginning of each entry in a Startify list.
-function add_emoji(entry)
-  return { line = '📁 ' .. entry.line, path = entry.path }
-end
-
 -- Set the Startify custom header.
 vim.g.startify_custom_header = center_startify({
     '███████╗██╗  ██╗██╗██╗     ███████╗',
@@ -38,12 +37,24 @@ vim.g.startify_custom_header = center_startify({
     '╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝',
 })
 
--- Apply the add_emoji filter to the list of repositories.
-vim.g.startify_lists = {{
-    type = command_to_startify_table('find ~/github/*/* -maxdepth 0 -type d'),
-    header = { "Repositories" },
-    filter = add_emoji
-}}
+-- Set the Startify list entries
+vim.g.startify_lists = {
+    { type = "dir", header = { "   Current Directory:" }, path = { vim.fn.getcwd() } },
+    { type = "sessions", header = { "   Sessions" } },
+    { type = "bookmarks", header = { "   Bookmarks" } },
+    { type = "commands", header = { "   Commands" } },
+    { type = command_to_startify_table('find ~/github/*/* -maxdepth 0 -type d'), header = { "   Repositories" } },
+}
+
+-- Set the Startify commands
+vim.g.startify_commands = {
+    { "Open NERDTree", "call v:lua.startify_open_nerdtree()" },
+    { "Edit Neovim Config", "$MYVIMRC" },
+}
 
 -- Enable Startify session autoload.
 vim.g.startify_session_autoload = 1
+
+-- Set NERDTree options to always open on the left
+vim.g.NERDTreeWinPos = "left"
+vim.g.NERDTreeWinSize = 25

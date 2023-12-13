@@ -49,6 +49,9 @@ vim.o.wildmenu = true
 -- Set terminal colors
 vim.o.t_Co = '256'
 
+-- Enable termguicolors
+vim.opt.termguicolors = true
+
 -- Configure undofile settings for unlimited undo history
 vim.o.undofile = true
 vim.o.undodir = vim.fn.expand('~/.vim/undodir')
