@@ -1,10 +1,15 @@
 -- Load Exile plugins
--- Needs to be loaded before anything else as this is general configuration.
-require('exile.general')
--- Plugins must then be loaded
-require('exile.plugins')
-require('exile.feline')
-require('exile.startify-nerdtree')
+local exile_modules = {
+  'general',
+  'plugins',
+  'feline',
+  'nerdtree',
+  'startify',
+}
+
+for _, module in ipairs(exile_modules) do
+  require('exile.' .. module)
+end
 
 -- Define a custom command to open Startify
 vim.cmd([[

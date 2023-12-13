@@ -46,15 +46,5 @@ vim.g.startify_lists = {
     { type = command_to_startify_table('find ~/github/*/* -maxdepth 0 -type d'), header = { "   Repositories" } },
 }
 
--- Set the Startify commands
-vim.g.startify_commands = {
-    { "Open NERDTree", "call v:lua.startify_open_nerdtree()" },
-    { "Edit Neovim Config", "$MYVIMRC" },
-}
-
 -- Enable Startify session autoload.
 vim.g.startify_session_autoload = 1
-
--- Set NERDTree options to always open on the left
-vim.g.NERDTreeWinPos = "left"
-vim.g.NERDTreeWinSize = 25
