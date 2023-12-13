@@ -17,13 +17,8 @@ vim.cmd([[
 -- Keybinding to open Startify
 vim.api.nvim_set_keymap('n', '<F3>', ':StartifyStart<CR>', { noremap = true, silent = true })
 
--- Define a custom command to open NERDTree on the left
-vim.cmd([[
-  command! NERDTreeOpen :NERDTreeToggle<CR>
-]])
-
 -- Map <F4> to open NERDTree
-vim.api.nvim_set_keymap('n', '<F4>', ':NERDTreeOpen<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<F4>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
 
 -- Autocommands for buffer behavior
 vim.cmd([[
