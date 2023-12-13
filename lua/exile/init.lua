@@ -1,5 +1,7 @@
 -- Load Exile plugins
+-- Needs to be loaded before anything else as this is general configuration.
 require('exile.general')
+-- Plugins must then be loaded
 require('exile.plugins')
 require('exile.feline')
 require('exile.startify-nerdtree')

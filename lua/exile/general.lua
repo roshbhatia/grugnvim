@@ -72,4 +72,5 @@ vim.cmd('syntax on')
 vim.opt.termguicolors = true
 
 -- Set colorscheme
-vim.cmd.colorscheme 'melange'
+vim.opt.background = "dark"
+vim.cmd("colorscheme oxocarbon")
