@@ -47,23 +47,3 @@ vim.g.startify_lists = {{
 
 -- Enable Startify session autoload.
 vim.g.startify_session_autoload = 1
-
--- Autocmd to open NERDTree when leaving the Startify buffer.
-vim.cmd([[
-    augroup startify_close
-        autocmd!
-        autocmd FileType startify nnoremap <buffer> <CR> :call startify_open_or_close_nerdtree()<CR>
-    augroup END
-]])
-
--- Function to open or close NERDTree based on whether it is already open.
-function startify_open_or_close_nerdtree()
-    local is_open = vim.api.nvim_eval("exists('t:NERDTreeBufName')")
-    if is_open == 0 then
-        vim.api.nvim_command("NERDTree")
-        vim.api.nvim_command("vertical resize 35")
-        vim.cmd("startinsert")
-    else
-        vim.api.nvim_command("NERDTreeClose")
-    end
-end

@@ -1,6 +1,3 @@
--- Disable compatibility with old-time vi
-vim.o.nocompatible = true
-
 -- Show matching brackets and parentheses
 vim.o.showmatch = true
 

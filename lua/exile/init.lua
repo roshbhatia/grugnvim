@@ -1,14 +1,28 @@
+-- Load Exile plugins
 require('exile.plugins')
 require('exile.general')
 require('exile.feline')
+
+-- Import your Startify configuration
 require('exile.startify')
 
--- Open NERDTree after startify exits
-vim.cmd([[autocmd BufLeave * if (winnr("$") == 1 && &filetype == "startify") | NERDTree | endif]])
--- Quit NERDTree if it's the only window opened
-vim.cmd(
-    [[autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif]])
--- Switch to insert mode when entering the editor window
-vim.cmd([[autocmd WinEnter * if &filetype !=# 'nerdtree' | startinsert | endif]])
--- Leave insert mode when entering NERDTree window
-vim.cmd([[autocmd BufEnter * if &filetype ==# 'nerdtree' | stopinsert | endif]])
+-- Define a custom command to open Startify
+vim.cmd([[
+  command! StartifyStart call StartifyStart()
+  function! StartifyStart()
+    Startify
+  endfunction
+]])
+
+-- Autocommands for buffer behavior
+vim.cmd([[
+  autocmd WinEnter * if &filetype !=# 'nerdtree' | startinsert | endif
+  autocmd BufEnter * if &filetype ==# 'nerdtree' | stopinsert | endif
+  autocmd BufEnter * if &filetype == 'startify' | stopinsert | endif
+]])
+
+-- Keybinding to open Startify
+vim.api.nvim_set_keymap('n', '<F3>', ':StartifyStart<CR>', { noremap = true, silent = true })
+
+-- Default settings
+vim.cmd('autocmd VimEnter * StartifyStart')
