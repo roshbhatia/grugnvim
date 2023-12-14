@@ -5,4 +5,4 @@ vim.cmd('set nocompatible')
 -- Remove viminfo warning
 vim.opt.viminfo:remove({ '!' })
 
-require("exile")
+require("grug")

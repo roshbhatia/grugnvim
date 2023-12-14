@@ -8,7 +8,7 @@ local exile_modules = {
 }
 
 for _, module in ipairs(exile_modules) do
-  require('exile.' .. module)
+  require('grug.' .. module)
 end
 
 -- Define a custom command to open Startify
