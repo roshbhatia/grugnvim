@@ -19,11 +19,11 @@ vim.cmd([[
   endfunction
 ]])
 
--- Keybinding to open Startify
-vim.api.nvim_set_keymap('n', '<F3>', ':StartifyStart<CR>', { noremap = true, silent = true })
+-- Map <F1> to open or close Startify
+vim.api.nvim_set_keymap('n', '<F1>', ':StartifyStart<CR>', { noremap = true, silent = true })
 
--- Map <F4> to open NERDTree
-vim.api.nvim_set_keymap('n', '<F4>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
+-- Map <C-Space> to open or close NERDTree
+vim.api.nvim_set_keymap('n', '<C-Space>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
 
 -- Autocommands for buffer behavior
 vim.cmd([[
