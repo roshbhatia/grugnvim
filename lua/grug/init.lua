@@ -23,14 +23,14 @@ require("lazy").setup({'lewis6991/gitsigns.nvim', "nvim-treesitter/nvim-treesitt
         vim.g.barbar_auto_setup = false
     end,
     opts = {}
-}, 'jackguo380/vim-lsp-cxx-highlight', 'liuchengxu/vim-which-key', 'feline-nvim/feline.nvim',
+}, 'jackguo380/vim-lsp-cxx-highlight', 'liuchengxu/vim-which-key', 'tamton-aquib/staline.nvim',
                        'nyoom-engineering/oxocarbon.nvim', 'mhinz/vim-startify'}, {
     lazy = false,
     version = false
 })
 
 -- Load Exile plugins
-local exile_modules = {'general', 'barline', 'feline', 'startify', 'nvim-tree'}
+local exile_modules = {'general', 'barline', 'staline', 'startify', 'nvim-tree'}
 
 for _, module in ipairs(exile_modules) do
     require('grug.' .. module)

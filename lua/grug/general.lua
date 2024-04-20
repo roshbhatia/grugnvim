@@ -71,9 +71,6 @@ vim.cmd('filetype plugin indent on')
 -- Enable syntax highlighting
 vim.cmd('syntax on')
 
--- Enable termguicolors
-vim.opt.termguicolors = true
-
 -- Always show the tabline
 vim.o.showtabline = 2
 
