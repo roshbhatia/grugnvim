@@ -1,13 +1,21 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
+-- Init lazy plugin manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    vim.fn.system(
+        {"git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", -- latest stable release
+         lazypath})
 end
+vim.opt.rtp:prepend(lazypath)
+
+-- Install external plugins
+require("lazy").setup({'preservim/nerdtree', 'jackguo380/vim-lsp-cxx-highlight', 'liuchengxu/vim-which-key',
+                       'feline-nvim/feline.nvim', 'nyoom-engineering/oxocarbon.nvim', 'mhinz/vim-startify'}, {
+    lazy = false,
+    version = false
+})
 
 -- Load Exile plugins
 local exile_modules = {
-  'plugins',
   'general',
   'feline',
   'nerdtree',
