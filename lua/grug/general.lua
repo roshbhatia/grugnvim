@@ -75,5 +75,4 @@ vim.cmd('syntax on')
 vim.o.showtabline = 2
 
 -- Set colorscheme
-vim.opt.background = "dark"
-vim.cmd("colorscheme oxocarbon")
+vim.cmd('colorscheme flexoki-dark')

@@ -7,7 +7,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Install external plugins
-require("lazy").setup({'lewis6991/gitsigns.nvim', "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons", {
+require("lazy").setup({{
+    'kepano/flexoki-neovim',
+    name = 'flexoki'
+}, 'lewis6991/gitsigns.nvim', "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons", {
     "nvim-tree/nvim-tree.lua",
     version = "*",
     lazy = false,
@@ -23,8 +26,7 @@ require("lazy").setup({'lewis6991/gitsigns.nvim', "nvim-treesitter/nvim-treesitt
         vim.g.barbar_auto_setup = false
     end,
     opts = {}
-}, 'jackguo380/vim-lsp-cxx-highlight', 'liuchengxu/vim-which-key', 'tamton-aquib/staline.nvim',
-                       'nyoom-engineering/oxocarbon.nvim', 'mhinz/vim-startify'}, {
+}, 'jackguo380/vim-lsp-cxx-highlight', 'liuchengxu/vim-which-key', 'tamton-aquib/staline.nvim', 'mhinz/vim-startify'}, {
     lazy = false,
     version = false
 })
