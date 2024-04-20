@@ -26,13 +26,13 @@ require("lazy").setup({{
         vim.g.barbar_auto_setup = false
     end,
     opts = {}
-}, 'jackguo380/vim-lsp-cxx-highlight', 'liuchengxu/vim-which-key', 'tamton-aquib/staline.nvim', 'mhinz/vim-startify'}, {
+}, 'jackguo380/vim-lsp-cxx-highlight', 'liuchengxu/vim-which-key', 'tamton-aquib/staline.nvim', 'mhinz/vim-startify', 'gorbit99/codewindow.nvim'}, {
     lazy = false,
     version = false
 })
 
 -- Load Exile plugins
-local exile_modules = {'general', 'barline', 'staline', 'startify', 'nvim-tree'}
+local exile_modules = {'general', 'barline', 'staline', 'startify', 'nvim-tree', 'codewindow'}
 
 for _, module in ipairs(exile_modules) do
     require('grug.' .. module)
