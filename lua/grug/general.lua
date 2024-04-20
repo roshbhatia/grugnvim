@@ -1,3 +1,6 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Show matching brackets and parentheses
 vim.o.showmatch = true
 
@@ -70,6 +73,9 @@ vim.cmd('syntax on')
 
 -- Enable termguicolors
 vim.opt.termguicolors = true
+
+-- Always show the tabline
+vim.o.showtabline = 2
 
 -- Set colorscheme
 vim.opt.background = "dark"
