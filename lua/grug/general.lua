@@ -75,7 +75,7 @@ vim.cmd('syntax on')
 vim.o.showtabline = 2
 
 -- Override default fillchars
-vim.opt.fillchars = {eob = " "}
+vim.opt.fillchars = {eob = ' '}
 
 -- Set colorscheme
 vim.cmd('colorscheme flexoki-dark')

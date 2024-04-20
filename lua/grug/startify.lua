@@ -10,25 +10,25 @@ end
 
 -- Define a function to open NERDTree with the selected repository
 function startify_open_nerdtree()
-    local selected = vim.fn.input("Choose a repo: ")
-    vim.cmd("NERDTree " .. selected)
+    local selected = vim.fn.input('Choose a repo: ')
+    vim.cmd('NERDTree ' .. selected)
 end
 
 -- A function that takes a command and returns a function that can be used as the type for a Startify list.
 -- The returned function will run the given command and return a table of file paths to display in Startify.
 function command_to_startify_table(command)
     return function()
-        local cmd_output = vim.fn.systemlist(command .. " 2>/dev/null")
+        local cmd_output = vim.fn.systemlist(command .. ' 2>/dev/null')
         local files = vim.tbl_map(function(v)
-            local path = string.gsub(v, os.getenv("HOME"), "~")
-            return { line = "  " .. path, path = v }
+            local path = string.gsub(v, os.getenv('HOME'), '~')
+            return {line = '  ' .. path, path = v}
         end, cmd_output)
         return files
     end
 end
 
 -- Set the Startify custom header.
-vim.g.startify_custom_header = center_startify({                                                                   
+vim.g.startify_custom_header = center_startify({
     '     ______    ______   __    __   ______     ',
     '    /      \\  /      \\ /  |  /  | /      \\    ',
     '   /$$$$$$  |/$$$$$$  |$$ |  $$ |/$$$$$$  |   ',
@@ -38,16 +38,18 @@ vim.g.startify_custom_header = center_startify({
     '    $$$$$$$ |$$/        $$$$$$/   $$$$$$$ |   ',
     '   /  \\__$$ |                    /  \\__$$ |   ',
     '   $$    $$/                     $$    $$/    ',
-    '    $$$$$$/                       $$$$$$/     ',
+    '    $$$$$$/                       $$$$$$/     '
 })
 
 -- Set the Startify list entries
 vim.g.startify_lists = {
-    { type = "dir", header = { "   Current Directory:" }, path = { vim.fn.getcwd() } },
-    { type = "sessions", header = { "   Sessions" } },
-    { type = "bookmarks", header = { "   Bookmarks" } },
-    { type = "commands", header = { "   Commands" } },
-    { type = command_to_startify_table('find ~/github/*/* -maxdepth 0 -type d'), header = { "   Repositories" } },
+    {type = 'dir', header = {'   Current Directory:'}, path = {vim.fn.getcwd()}},
+    {type = 'sessions', header = {'   Sessions'}},
+    {type = 'bookmarks', header = {'   Bookmarks'}},
+    {type = 'commands', header = {'   Commands'}}, {
+        type = command_to_startify_table('find ~/github/*/* -maxdepth 0 -type d'),
+        header = {'   Repositories'}
+    }
 }
 
 -- Enable Startify session autoload.
