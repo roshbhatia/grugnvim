@@ -54,3 +54,31 @@ vim.g.startify_lists = {
 
 -- Enable Startify session autoload.
 vim.g.startify_session_autoload = 1
+
+-- Function to disable code preview
+local function disable_code_preview()
+    vim.g.code_preview_enabled = false
+end
+
+-- Function to enable code preview
+local function enable_code_preview()
+    vim.g.code_preview_enabled = true
+end
+
+-- Modify Startify session to toggle code preview
+vim.api.nvim_create_autocmd("User", {
+    pattern = "StartifyBufferOpened",
+    callback = function()
+        vim.g.code_preview_enabled = false
+        require('codewindow').setup({auto_enable = false})
+    end
+})
+
+vim.api.nvim_create_autocmd("User", {
+    pattern = "StartifyBufferClosed",
+    callback = function()
+        vim.g.code_preview_enabled = true
+        require('codewindow').setup({auto_enable = true})
+    end
+})
+
