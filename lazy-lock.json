@@ -10,5 +10,6 @@
   "staline.nvim": { "branch": "main", "commit": "c49f2deaba3d3c669e7243b57619e0078e7a351b" },
   "vim-lsp-cxx-highlight": { "branch": "master", "commit": "0e7476ff41cd65e55f92fdbc7326335ec33b59b0" },
   "vim-startify": { "branch": "master", "commit": "4e089dffdad46f3f5593f34362d530e8fe823dcf" },
-  "vim-which-key": { "branch": "master", "commit": "470cd19ce11b616e0640f2b38fb845c42b31a106" }
+  "vim-which-key": { "branch": "master", "commit": "470cd19ce11b616e0640f2b38fb845c42b31a106" },
+  "wilder.nvim": { "branch": "master", "commit": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf" }
 }
