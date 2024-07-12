@@ -49,9 +49,6 @@ vim.o.ttyfast = true
 -- Enable wildmenu for completion menu
 vim.o.wildmenu = true
 
--- Set terminal colors
-vim.o.t_Co = '256'
-
 -- Enable termguicolors
 vim.opt.termguicolors = true
 
