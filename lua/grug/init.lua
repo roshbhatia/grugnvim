@@ -55,4 +55,7 @@ vim.api.nvim_set_keymap('n', '<F2>', ':NvimTreeToggle<CR>',
                         {noremap = true, silent = true})
 
 -- Default settings
-vim.cmd('autocmd VimEnter * StartifyStart')
+
+if vim.v.argv == 0 then
+    vim.cmd('autocmd VimEnter * StartifyStart')
+end
